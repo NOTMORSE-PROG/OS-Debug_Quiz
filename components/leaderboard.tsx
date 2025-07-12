@@ -4,14 +4,22 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+<<<<<<< HEAD
 import { Trophy, Medal, Award, Home, Calendar, Code, Clock, Zap, RefreshCw } from "lucide-react"
+=======
+import { Trophy, Medal, Award, Home, Calendar, Code, Clock, Zap } from "lucide-react"
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
 
 interface LeaderboardProps {
   onBack: () => void
 }
 
 interface LeaderboardEntry {
+<<<<<<< HEAD
   id: string | number
+=======
+  id: number
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
   name: string
   score: number
   language: string
@@ -23,6 +31,7 @@ interface LeaderboardEntry {
 
 export default function Leaderboard({ onBack }: LeaderboardProps) {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
+<<<<<<< HEAD
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -54,6 +63,12 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
 
   useEffect(() => {
     fetchLeaderboard()
+=======
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("opensociety-leaderboard") || "[]")
+    setLeaderboard(data)
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
   }, [])
 
   const getRankIcon = (index: number) => {
@@ -107,6 +122,7 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
     return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`
   }
 
+<<<<<<< HEAD
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
@@ -120,6 +136,8 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
     )
   }
 
+=======
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       {/* Header */}
@@ -133,6 +151,7 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
                 2025
               </Badge>
             </div>
+<<<<<<< HEAD
             <div className="flex items-center space-x-3">
               <Button variant="outline" size="sm" onClick={fetchLeaderboard} disabled={isLoading}>
                 <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
@@ -143,11 +162,18 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
                 Back to Home
               </Button>
             </div>
+=======
+            <Button onClick={onBack}>
+              <Home className="h-4 w-4 mr-2" />
+              Back to Home
+            </Button>
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<<<<<<< HEAD
         {error && (
           <Card className="mb-6 border-yellow-200 bg-yellow-50">
             <CardContent className="p-4">
@@ -159,6 +185,8 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
           </Card>
         )}
 
+=======
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
         {leaderboard.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">

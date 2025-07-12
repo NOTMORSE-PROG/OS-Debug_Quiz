@@ -9,8 +9,11 @@
     "start": "next start"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@aws-sdk/client-dynamodb": "latest",
     "@aws-sdk/lib-dynamodb": "latest",
+=======
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -47,11 +50,19 @@
     "embla-carousel-react": "8.5.1",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
+<<<<<<< HEAD
     "next": "14.2.16",
     "next-themes": "^0.4.4",
     "react": "^18",
     "react-day-picker": "8.10.1",
     "react-dom": "^18",
+=======
+    "next": "15.2.4",
+    "next-themes": "^0.4.4",
+    "react": "^19",
+    "react-day-picker": "8.10.1",
+    "react-dom": "^19",
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
     "react-hook-form": "^7.54.1",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",
@@ -63,8 +74,13 @@
   },
   "devDependencies": {
     "@types/node": "^22",
+<<<<<<< HEAD
     "@types/react": "^18",
     "@types/react-dom": "^18",
+=======
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+>>>>>>> 8711269f48c9622525da640e82aee73933a8976c
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
