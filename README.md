@@ -43,7 +43,7 @@ A modern web application where students can practice debugging skills by fixing 
 
 * Node.js 18+
 * npm or yarn
-* MongoDB Atlas account (recommended)
+* AWS account
 
 ---
 
