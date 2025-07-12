@@ -182,8 +182,6 @@ height: 200px;
 
 ---
 
----
-
 ## 🎨 Technologies Used
 
 * Frontend: Next.js 14, React, TypeScript
