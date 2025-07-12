@@ -165,19 +165,6 @@ return "Hello, " + name
 Fix:
 System.out.println("Hello");
 
-🌐 HTML
-
-* Unclosed tags, missing quotes
-  Example:
-
-<h1>Title  
-<p>Paragraph</p>  
-
-Fix:
-
-<h1>Title</h1>  
-<p>Paragraph</p>  
-
 🎨 CSS
 
 * Missing semicolons, invalid syntax
