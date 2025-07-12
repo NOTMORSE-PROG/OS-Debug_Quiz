@@ -208,17 +208,7 @@ height: 200px;
 
 ## 📝 Adding New Challenges
 
-Go to lib/challenges.ts and add:
-{
-  id: 21,
-  description: "Fix the missing semicolon",
-  brokenCode: `// broken code here`,
-  correctCode: `// fixed code here`,
-  expectedOutput: "Expected result",
-  currentOutput: "Current error message",
-  hint: "Helpful hint for students"
-}
-
+Go to lib/challenges.ts and add challanges
 
 ---
 
