@@ -111,7 +111,7 @@ export default function HomePage() {
               <Image src="/logo.png" alt="OpenSource Logo" width={60} height={60} className="rounded-lg" />
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">OpenSource Debug Challenge</h1>
-                <p className="text-sm text-gray-600">T.I.P Manila Academic Club • 2025</p>
+                <p className="text-sm text-gray-600">T.I.P Manila Academic Club</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
@@ -205,7 +205,7 @@ export default function HomePage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Trophy className="h-5 w-5 mr-2 text-yellow-500" />
-              Speed-Based Scoring System (2025)
+              Speed-Based Scoring System
             </CardTitle>
           </CardHeader>
           <CardContent>

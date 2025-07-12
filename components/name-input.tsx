@@ -1,10 +1,6 @@
 "use client"
 
 import type React from "react"
-<<<<<<< HEAD
-=======
-
->>>>>>> 8711269f48c9622525da640e82aee73933a8976c
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -22,7 +18,6 @@ interface NameInputProps {
 
 export default function NameInput({ score, totalQuestions, language, completionTime, onSubmit }: NameInputProps) {
   const [name, setName] = useState("")
-<<<<<<< HEAD
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -89,29 +84,6 @@ export default function NameInput({ score, totalQuestions, language, completionT
       } finally {
         setIsSubmitting(false)
       }
-=======
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (name.trim()) {
-      // Save to localStorage
-      const leaderboardData = JSON.parse(localStorage.getItem("opensociety-leaderboard") || "[]")
-      const newEntry = {
-        id: Date.now(),
-        name: name.trim(),
-        score,
-        language,
-        date: new Date().toISOString(),
-        totalQuestions,
-        completionTime,
-        avgTimePerChallenge: Math.round(completionTime / totalQuestions),
-      }
-      leaderboardData.push(newEntry)
-      leaderboardData.sort((a: any, b: any) => b.score - a.score)
-      localStorage.setItem("opensociety-leaderboard", JSON.stringify(leaderboardData))
-
-      onSubmit()
->>>>>>> 8711269f48c9622525da640e82aee73933a8976c
     }
   }
 
@@ -181,21 +153,13 @@ export default function NameInput({ score, totalQuestions, language, completionT
                   className="pl-10"
                   maxLength={50}
                   required
-<<<<<<< HEAD
                   disabled={isSubmitting}
-=======
->>>>>>> 8711269f48c9622525da640e82aee73933a8976c
                 />
               </div>
             </div>
 
-<<<<<<< HEAD
             <Button type="submit" className="w-full" disabled={!name.trim() || isSubmitting}>
               {isSubmitting ? "Saving..." : "Submit to Leaderboard"}
-=======
-            <Button type="submit" className="w-full" disabled={!name.trim()}>
-              Submit to Leaderboard
->>>>>>> 8711269f48c9622525da640e82aee73933a8976c
             </Button>
           </form>
         </CardContent>
