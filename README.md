@@ -182,32 +182,6 @@ height: 200px;
 
 ---
 
-## 🏗️ Project Structure
-
-opensociety-debug-quiz/
-├── app/
-│   ├── page.tsx              # Home page (language selection)
-│   ├── layout.tsx            # Root layout for app
-│   └── globals.css           # Global styles
-│
-├── components/
-│   ├── code-editor.tsx       # Main challenge editor
-│   ├── qr-code-modal.tsx     # QR code popup
-│   ├── name-input.tsx        # Name input and score submission
-│   ├── leaderboard.tsx       # Leaderboard display
-│   └── ui/                   # Reusable UI components
-│
-├── lib/
-│   ├── challenges.ts         # Challenge data for all languages
-│   └── utils.ts              # Utility functions
-│
-├── public/
-│   ├── logo.png              # Project logo
-│   └── qr-code.png           # Resource QR code
-│
-└── README.md                 # Project documentation
-
-
 ---
 
 ## 🎨 Technologies Used
