@@ -121,21 +121,25 @@ Schema Example:
 
 ### Points Per Challenge
 
-Speed Range — Points — Badge
-< 15s — 25 pts — ⚡ Lightning Fast
-15–30s — 20 pts — 🚀 Quick Fix
-30–45s — 15 pts — 📈 Steady Progress
-45–60s — 10 pts — ✅ Got There
-Hint Used — -5 pts — 💡 Hint Penalty
-Wrong/Timeout — 0 pts — ❌ No Points
+| Speed Range         | Points     | Badge              |
+| ------------------- | ---------- | ------------------ |
+| `< 15 seconds`      | **25 pts** | ⚡ Lightning Fast   |
+| `15 – 30 seconds`   | **20 pts** | 🚀 Quick Fix       |
+| `30 – 45 seconds`   | **15 pts** | 📈 Steady Progress |
+| `45 – 60 seconds`   | **10 pts** | ✅ Got There        |
+| **Used Hint**       | **–5 pts** | 💡 Hint Penalty    |
+| **Wrong / Timeout** | **0 pts**  | ❌ No Points        |
+
 
 ### Achievement Levels
 
-Score — Level — Badge — Description
-200–250 — Code Ninja — 🥷 — Master-level speed
-150–199 — Debug Expert — 🔧 — Excellent problem-solving
-100–149 — Bug Hunter — 🐛 — Solid fundamentals
-< 100 — Code Learner — 📚 — Still learning, keep going!
+| Score Range | Level        | Badge       | Description                       |
+| ----------- | ------------ | ----------- | --------------------------------- |
+| `200 – 250` | Code Ninja   | 🥷 Master   | Lightning-fast debugging skills   |
+| `150 – 199` | Debug Expert | 🔧 Expert   | Excellent problem-solving ability |
+| `100 – 149` | Bug Hunter   | 🐛 Hunter   | Solid debugging fundamentals      |
+| `< 100`     | Code Learner | 📚 Learning | Keep practicing and improving!    |
+
 
 ---
 
@@ -194,11 +198,28 @@ height: 200px;
 ## 🏗️ Project Structure
 
 opensociety-debug-quiz/
-├── app/ — page.tsx, layout.tsx, globals.css
-├── components/ — code-editor, qr-code-modal, leaderboard, UI
-├── lib/ — challenges.ts, utils.ts
-├── public/ — logo.png, qr-code.png
-└── README.md
+├── app/
+│   ├── page.tsx              # Home page (language selection)
+│   ├── layout.tsx            # Root layout for app
+│   └── globals.css           # Global styles
+│
+├── components/
+│   ├── code-editor.tsx       # Main challenge editor
+│   ├── qr-code-modal.tsx     # QR code popup
+│   ├── name-input.tsx        # Name input and score submission
+│   ├── leaderboard.tsx       # Leaderboard display
+│   └── ui/                   # Reusable UI components
+│
+├── lib/
+│   ├── challenges.ts         # Challenge data for all languages
+│   └── utils.ts              # Utility functions
+│
+├── public/
+│   ├── logo.png              # Project logo
+│   └── qr-code.png           # Resource QR code
+│
+└── README.md                 # Project documentation
+
 
 ---
 
@@ -230,14 +251,15 @@ opensociety-debug-quiz/
 
 Go to lib/challenges.ts and add:
 {
-id: 21,
-description: "Fix the missing semicolon",
-brokenCode: "// broken code here",
-correctCode: "// fixed code here",
-expectedOutput: "Expected result",
-currentOutput: "Current error",
-hint: "Helpful hint for students"
+  id: 21,
+  description: "Fix the missing semicolon",
+  brokenCode: `// broken code here`,
+  correctCode: `// fixed code here`,
+  expectedOutput: "Expected result",
+  currentOutput: "Current error message",
+  hint: "Helpful hint for students"
 }
+
 
 ---
 
