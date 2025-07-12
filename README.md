@@ -6,7 +6,7 @@
 
 **Interactive Code Debugging Platform for T.I.P Manila Academic Club**
 
-A modern web application where students can practice debugging skills by fixing real code errors in Python, Java, HTML, and CSS. Built with Next.js and designed for beginner programmers.
+A modern web application where students can practice debugging skills by fixing real code errors in Python, Java, HTML, and CSS. Built with Next.js and AWS, designed for beginner programmers.
 
 ![OpenSource Logo](./public/logo.png)
 
@@ -65,55 +65,6 @@ A modern web application where students can practice debugging skills by fixing 
    npm run dev
 
 6. Open your browser and go to [http://localhost:3000](http://localhost:3000)
-
----
-
-## 🗄️ Database Setup
-
-### AWS DynamoDB
-
-Why AWS DynamoDB?
-
-* ✅ Free Tier: 25GB storage
-* ✅ Serverless: No server management
-* ✅ Fast Performance
-* ✅ Scalable
-* ✅ Reliable
-
-Setup Steps:
-
-1. Create an AWS Account and sign in to AWS Console
-
-2. Create DynamoDB Table
-   aws dynamodb create-table
-   \--table-name opensociety-leaderboard
-   \--attribute-definitions AttributeName=id,AttributeType=S
-   \--key-schema AttributeName=id,KeyType=HASH
-   \--billing-mode PAY\_PER\_REQUEST
-   \--region us-east-1
-
-3. Get AWS Credentials from IAM Console
-
-4. Configure environment variables in .env.local:
-   AWS\_ACCESS\_KEY\_ID=your\_access\_key
-   AWS\_SECRET\_ACCESS\_KEY=your\_secret\_key
-   AWS\_REGION=us-east-1
-   DYNAMODB\_TABLE\_NAME=opensociety-leaderboard
-
-5. Install AWS SDK
-   npm install @aws-sdk/client-dynamodb @aws-sdk/lib-dynamodb
-
-Schema Example:
-{
-"id": "string",
-"name": "string",
-"score": "number",
-"language": "string",
-"date": "string",
-"totalQuestions": "number",
-"completionTime": "number",
-"avgTimePerChallenge": "number"
-}
 
 ---
 
