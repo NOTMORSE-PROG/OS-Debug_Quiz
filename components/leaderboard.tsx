@@ -235,7 +235,7 @@ export default function Leaderboard({ onBack }: LeaderboardProps) {
               </div>
             )}
 
-            {/* Full Leaderboard */}
+            {/* Full Leaderboard  */}
             <Card>
               <CardHeader>
                 <CardTitle>All Scores - Speed Rankings</CardTitle>

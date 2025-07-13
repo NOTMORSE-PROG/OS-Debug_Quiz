@@ -50,8 +50,6 @@ export default function QRCodeModal({ language, onStart, onBack }: QRCodeModalPr
             <>
               <div className="text-center">
                 <p className="text-gray-600 mb-4">Scan the QR code to access additional resources for this challenge</p>
-
-                {/* Your actual QR Code */}
                 <div className="bg-white border-2 border-gray-200 rounded-lg p-4 mb-4">
                   <Image src="/qr-code.png" alt="OpenSource QR Code" width={200} height={200} className="mx-auto" />
                 </div>

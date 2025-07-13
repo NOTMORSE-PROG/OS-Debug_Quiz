@@ -15,14 +15,27 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
 
-    const { name, score, language, totalQuestions, completionTime } = body
+    const { name, email, score, language, totalQuestions, completionTime } = body
 
-    if (!name || !score || !language || !totalQuestions || !completionTime) {
+    // Validate required fields
+    if (!name || !email || !score || !language || !totalQuestions || !completionTime) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: "Invalid email format" }, { status: 400 })
+    }
+
+    // Validate Gmail domain 
+    if (!email.toLowerCase().endsWith("@gmail.com")) {
+      return NextResponse.json({ error: "Please use a Gmail address" }, { status: 400 })
     }
 
     const entry = {
       name: name.trim(),
+      email: email.toLowerCase().trim(),
       score: Number.parseInt(score),
       language,
       date: new Date().toISOString(),
