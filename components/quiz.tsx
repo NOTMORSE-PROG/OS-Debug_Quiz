@@ -46,13 +46,25 @@ export default function Quiz({ language, onComplete, onBack }: QuizProps) {
     return 5
   }
 
+  const normalizeAnswer = (answer: string) => {
+    return answer
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, " ") 
+      .replace(/[^\w\s-]/g, "") 
+  }
+
   const handleAnswerSelect = (answer: string) => {
     setSelectedAnswer(answer)
   }
 
   const handleNextQuestion = () => {
     const timeSpent = Math.floor((Date.now() - questionStartTime) / 1000)
-    const isCorrect = selectedAnswer === questions[currentQuestion]?.correctAnswer
+    const currentQ = questions[currentQuestion]
+    const normalizedSelected = normalizeAnswer(selectedAnswer)
+    const normalizedCorrect = normalizeAnswer(currentQ?.correctAnswer || "")
+    const isCorrect = normalizedSelected === normalizedCorrect
+
     const points = calculatePoints(isCorrect, timeSpent)
 
     setScore(score + points)
@@ -86,6 +98,14 @@ export default function Quiz({ language, onComplete, onBack }: QuizProps) {
   }
 
   if (showResult) {
+    const correctCount = answers.filter((answer, index) => {
+      const normalizedAnswer = normalizeAnswer(answer)
+      const normalizedCorrect = normalizeAnswer(questions[index]?.correctAnswer || "")
+      return normalizedAnswer === normalizedCorrect
+    }).length
+
+    const incorrectCount = questions.length - correctCount
+
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <Card className="w-full max-w-2xl">
@@ -101,16 +121,12 @@ export default function Quiz({ language, onComplete, onBack }: QuizProps) {
             <div className="grid grid-cols-2 gap-4">
               <div className="text-center p-4 bg-green-50 rounded-lg">
                 <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <div className="font-semibold">
-                  {answers.filter((answer, index) => answer === questions[index]?.correctAnswer).length}
-                </div>
+                <div className="font-semibold">{correctCount}</div>
                 <div className="text-sm text-gray-600">Correct</div>
               </div>
               <div className="text-center p-4 bg-red-50 rounded-lg">
                 <XCircle className="h-8 w-8 text-red-600 mx-auto mb-2" />
-                <div className="font-semibold">
-                  {answers.filter((answer, index) => answer !== questions[index]?.correctAnswer).length}
-                </div>
+                <div className="font-semibold">{incorrectCount}</div>
                 <div className="text-sm text-gray-600">Incorrect</div>
               </div>
             </div>

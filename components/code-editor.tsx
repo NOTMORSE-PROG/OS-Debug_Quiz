@@ -60,18 +60,138 @@ export default function CodeEditor({ language, onComplete, onBack }: CodeEditorP
     return points
   }
 
+  const normalizeCode = (code: string) => {
+    return code
+      .trim()
+      .replace(/\r\n/g, "\n")
+      .replace(/\t/g, "    ")
+      .replace(/\s+$/gm, "")
+      .replace(/^\s+$/gm, "") 
+      .replace(/\n{3,}/g, "\n\n") 
+      .replace(/\s*\n\s*/g, "\n") 
+      .replace(/\s+/g, " ") 
+      .replace(/\s*([{}();,])\s*/g, "$1") 
+      .replace(/\s*=\s*/g, "=") 
+      .replace(/\s*:\s*/g, ":")
+      .replace(/\s*\+\s*/g, "+") 
+      .replace(/\s*-\s*/g, "-") 
+      .replace(/\s*\*\s*/g, "*") 
+      .replace(/\s*\/\s*/g, "/") 
+      .replace(/\s*<\s*/g, "<") 
+      .replace(/\s*>\s*/g, ">") 
+      .replace(/\s*==\s*/g, "==") 
+      .replace(/\s*!=\s*/g, "!=") 
+      .replace(/\s*<=\s*/g, "<=") 
+      .replace(/\s*>=\s*/g, ">=") 
+      .toLowerCase()
+  }
+
   const checkSolution = () => {
     const currentChal = challenges[currentChallenge]
-    const normalizedUserCode = userCode.trim().replace(/\s+/g, " ")
-    const normalizedCorrectCode = currentChal.correctCode.trim().replace(/\s+/g, " ")
+    const normalizedUserCode = normalizeCode(userCode)
+    const normalizedCorrectCode = normalizeCode(currentChal.correctCode)
 
     if (normalizedUserCode === normalizedCorrectCode) {
       setFeedback({ type: "success", message: "Perfect! Code fixed successfully!" })
       setTimeout(() => handleNextChallenge(true), 1500)
-    } else {
-      setFeedback({ type: "error", message: "Not quite right. Check the expected output and try again!" })
-      setTimeout(() => setFeedback({ type: "", message: "" }), 3000)
+      return
     }
+    const userLines = userCode
+      .trim()
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0)
+    const correctLines = currentChal.correctCode
+      .trim()
+      .split("\n")
+      .map((line: string) => line.trim())
+      .filter((line: string) => line.length > 0)
+
+    if (userLines.length === correctLines.length) {
+      let isEquivalent = true
+      for (let i = 0; i < userLines.length; i++) {
+        const normalizedUserLine = normalizeCode(userLines[i])
+        const normalizedCorrectLine = normalizeCode(correctLines[i])
+        if (normalizedUserLine !== normalizedCorrectLine) {
+          isEquivalent = false
+          break
+        }
+      }
+
+      if (isEquivalent) {
+        setFeedback({ type: "success", message: "Excellent! Code fixed successfully!" })
+        setTimeout(() => handleNextChallenge(true), 1500)
+        return
+      }
+    }
+
+    const isFixPresent = checkLanguageSpecificFix(userCode, currentChal, language)
+    if (isFixPresent) {
+      setFeedback({ type: "success", message: "Great! Code fixed successfully!" })
+      setTimeout(() => handleNextChallenge(true), 1500)
+      return
+    }
+
+    setFeedback({ type: "error", message: "Not quite right. Check the expected output and try again!" })
+    setTimeout(() => setFeedback({ type: "", message: "" }), 3000)
+  }
+
+  // Language-specific fix checking
+  const checkLanguageSpecificFix = (userCode: string, challenge: any, lang: string) => {
+    const userNormalized = userCode.toLowerCase().trim()
+    const correctNormalized = challenge.correctCode.toLowerCase().trim()
+
+    switch (lang.toLowerCase()) {
+      case "python":
+        // Check for common Python fixes
+        if (challenge.description.includes("missing closing parenthesis")) {
+          return userNormalized.includes("print(") && userNormalized.includes(")")
+        }
+        if (challenge.description.includes("indentation")) {
+          return userNormalized.includes("    print(") || userNormalized.includes("\tprint(")
+        }
+        if (challenge.description.includes("colon")) {
+          return userNormalized.includes(":")
+        }
+        break
+
+      case "java":
+        // Check for common Java fixes
+        if (challenge.description.includes("semicolon")) {
+          const userSemicolons = (userCode.match(/;/g) || []).length
+          const correctSemicolons = (challenge.correctCode.match(/;/g) || []).length
+          return userSemicolons >= correctSemicolons
+        }
+        break
+
+      case "html":
+        // Check for common HTML fixes
+        if (challenge.description.includes("closing tag")) {
+          const openTags = userCode.match(/<[^/][^>]*>/g) || []
+          const closeTags = userCode.match(/<\/[^>]*>/g) || []
+          return openTags.length <= closeTags.length
+        }
+        if (challenge.description.includes("quote")) {
+          return userCode.includes('"') && userCode.split('"').length % 2 === 1
+        }
+        break
+
+      case "css":
+        // Check for common CSS fixes
+        if (challenge.description.includes("semicolon")) {
+          const userSemicolons = (userCode.match(/;/g) || []).length
+          const correctSemicolons = (challenge.correctCode.match(/;/g) || []).length
+          return userSemicolons >= correctSemicolons
+        }
+        if (challenge.description.includes("closing brace")) {
+          const openBraces = (userCode.match(/{/g) || []).length
+          const closeBraces = (userCode.match(/}/g) || []).length
+          return openBraces === closeBraces
+        }
+        break
+    }
+
+    return false
   }
 
   const handleNextChallenge = (isCorrect: boolean) => {
