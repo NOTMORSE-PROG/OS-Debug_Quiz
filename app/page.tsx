@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Code, Trophy, Users, Clock, BadgeIcon as LeaderboardIcon, Lightbulb } from "lucide-react"
+import { Code, Trophy, Users, Clock, Lightbulb } from "lucide-react"
 import QRCodeModal from "@/components/qr-code-modal"
 import CodeEditor from "@/components/code-editor"
 import NameInput from "@/components/name-input"
@@ -111,12 +111,12 @@ export default function HomePage() {
               <Image src="/logo.png" alt="OpenSource Logo" width={60} height={60} className="rounded-lg" />
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">OpenSource Debug Challenge</h1>
-                <p className="text-sm text-gray-600">T.I.P Manila Academic Club</p>
+                <p className="text-sm text-gray-600">T.I.P Manila Academic Club • 2025</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
               <Button variant="outline" onClick={handleViewLeaderboard}>
-                <LeaderboardIcon className="h-4 w-4 mr-2" />
+                <Trophy className="h-4 w-4 mr-2" />
                 Leaderboard
               </Button>
               <Badge variant="outline" className="text-indigo-600 border-indigo-200">
@@ -132,7 +132,7 @@ export default function HomePage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Interactive Code Debugging</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Code Debugging</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Fix real code errors by editing directly in the browser! Find syntax errors, missing semicolons, incorrect
             logic, and more. Each challenge shows broken code that you need to repair to get the expected output.
@@ -200,12 +200,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/*Scoring System */}
+        {/* New Scoring System */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center">
               <Trophy className="h-5 w-5 mr-2 text-yellow-500" />
-              Speed-Based Scoring System
+              Speed-Based Scoring System (2025)
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -302,7 +302,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-600">© 2025 OpenSource Academic Club - T.I.P Manila</p>
-            <p className="text-sm text-gray-500 mt-2">Interactive debugging challenges for the next generation</p>
+            <p className="text-sm text-gray-500 mt-2">Interactive debugging challenges</p>
           </div>
         </div>
       </footer>
