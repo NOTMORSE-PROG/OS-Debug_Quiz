@@ -55,10 +55,6 @@ export default function NameInput({ score, totalQuestions, language, completionT
       return
     }
 
-    if (!email.toLowerCase().endsWith("@gmail.com")) {
-      setError("Please use a Gmail address")
-      return
-    }
 
     if (isSubmitting) return
 

@@ -28,10 +28,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Invalid email format" }, { status: 400 })
     }
 
-    // Validate Gmail domain 
-    if (!email.toLowerCase().endsWith("@gmail.com")) {
-      return NextResponse.json({ error: "Please use a Gmail address" }, { status: 400 })
-    }
 
     const entry = {
       name: name.trim(),
